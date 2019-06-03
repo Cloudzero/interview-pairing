@@ -1,0 +1,56 @@
+# -*- coding: utf-8 -*-
+# Copyright (c) 2016-present, CloudZero, Inc. All rights reserved.
+# Licensed under the BSD-style license. See LICENSE file in the project root for full license information.
+
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  interview-pairing
+
+  SAM Template for interview-pairing
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  CloudTrailAnalyticsFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: pairing/
+      Handler: app.handler
+      Runtime: python3.7
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Ref Bucket
+      Events:
+        CloudTrailStream:
+          Type: Kinesis
+          Properties:
+            Stream: !GetAtt Stream.Arn
+            StartingPosition: TRIM_HORIZON
+            BatchSize: 10
+            Enabled: false
+
+  Stream:
+    Type: AWS::Kinesis::Stream
+    Properties:
+      ShardCount: 1
+
+  Bucket:
+    Type: AWS::S3::Bucket
+
+Outputs:
+  CloudTrailAnalyticsBucket:
+    Description: "CloudTrail Analytics Bucket"
+    Value: !Ref Bucket
+  CloudTrailAnalyticsFunction:
+    Description: "CloudTrail Analytics Lambda Function ARN"
+    Value: !GetAtt CloudTrailAnalyticsFunction.Arn
+  CloudTrailAnalyticsFunctionIamRole:
+    Description: "Implicit IAM Role created for CloudTrail Analytics function"
+    Value: !GetAtt CloudTrailAnalyticsFunctionRole.Arn
+  CloudTrailStreamArn:
+    Description: "CloudTrail Stream ARN"
+    Value: !GetAtt Stream.Arn
