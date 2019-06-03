@@ -1,10 +1,28 @@
 # Interview-Pairing
 
-## Concept
+## Problem
+
+How do we ensure you will love working at CloudZero?
+
+## Concepts
+
+### Pair Programming
+
+Pair Programming is a great way to build something while getting to know someone.
+
+For your upcoming Pair Programming session, you will be the *navigator* while your CloudZero buddy will be the *driver*. Please expect your buddy to be a "naive driver", that is he/she is comfortable hands on keyboard and will _not_ do anything without explicit instruction form you.
+
+### Domain Driven
+
+The application contained herein will try to solve a real domain problem. This problem is:
+
+TODO: fill in details here
+
+### Open
+
+This project is open for your perusal before and after the pair programming session.
 
 ## Directory Overview
-
-This is an interview pairing project
 
 ```bash
 .
@@ -25,11 +43,23 @@ This is an interview pairing project
 
 * AWS CLI already configured with Administrator permission
 * [Python 3 installed](https://www.python.org/downloads/)
-* [Docker installed](https://www.docker.com/community-edition)
+* [Docker installed](https://www.docker.com/community-edition**
 
 ## Setup process
 
 ### Local development
+
+**Initialize**
+
+```bash
+make init
+```
+
+**Test**
+
+```bash
+make test
+```
 
 **Invoking function locally using a local sample payload**
 
