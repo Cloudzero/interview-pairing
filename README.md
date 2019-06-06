@@ -10,7 +10,7 @@ How do we ensure you will love working at CloudZero?
 
 Pair Programming is a great way to build something while getting to know someone.
 
-For your upcoming Pair Programming session, you will be the *navigator* while your CloudZero buddy will be the *driver*. Please expect your buddy to be a "naive driver", that is he/she is comfortable hands on keyboard and will _not_ do anything without explicit instruction form you.
+For your upcoming Pair Programming session, you will be the *navigator* while your CloudZero buddy will be the *driver*. Please expect your buddy to be a "naive driver", that is he/she is comfortable hands on keyboard and will _not_ do anything without explicit instruction from you.
 
 ### Domain Driven
 

@@ -7,14 +7,13 @@ import json
 import pytest
 
 from pairing import app
+from pairing import sample_data
 
 
 @pytest.fixture()
 def kinesis_event():
     """ Generates Kinesis Event"""
-
-    return {
-    }
+    return sample_data.generate_kinesis_batch(1000)
 
 
 @pytest.mark.unit
@@ -26,4 +25,3 @@ def test_handler(kinesis_event, mocker):
     assert ret["statusCode"] == 200
     assert "message" in ret["body"]
     assert data["message"] == "hello world"
-    # assert "location" in data.dict_keys()
