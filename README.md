@@ -16,7 +16,11 @@ For your upcoming Pair Programming session, you will be the *navigator* while yo
 
 The application contained herein will try to solve a real domain problem. This problem is:
 
-TODO: fill in details here
+    1) You have a batch of kinesis data records to process using a lambda function.  This represents a situation where your lambda function is consuming a kinesis data stream.
+    2) The kinesis data stream contains embedded cloudtrail events of several varieties which will need to be unpacked as the stream records are consumed.
+    3) Though there are four types of cloudtrail events in the stream, we only are interested in the ones that contain EC2 instances.
+    4) Extract all of the unique EC2 instance IDs you can find, along with the UTC epoch timestamp (including milliseconds) when the ID was found.
+    5) Create a CSV file from this pairing of instance ID and timestamp, sort it by timestamp ascending, and upload it to an S3 bucket.
 
 ### Open
 
@@ -32,6 +36,8 @@ This project is open for your perusal before and after the pair programming sess
 │   ├── __init__.py
 │   ├── app.py                  <-- Lambda function code
 │   ├── requirements.txt        <-- Lambda function Requirements
+│   ├── sample_data.py          <-- Sample data functions
+│   ├── utils.py                <-- Utility functions and classes
 ├── template.yaml               <-- SAM Template
 └── tests                       <-- Unit tests
     └── unit
