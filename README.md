@@ -20,7 +20,7 @@ The application contained herein will try to solve a real domain problem. This p
     2) The kinesis data stream contains embedded cloudtrail events of several varieties which will need to be unpacked as the stream records are consumed.
     3) Though there are four types of cloudtrail events in the stream, we only are interested in the ones that contain EC2 instances.
     4) Extract all of the unique EC2 instance IDs you can find, along with the UTC epoch timestamp (including milliseconds) when the ID was found.
-    5) Create a CSV file from this pairing of instance ID and timestamp, sort it by timestamp ascending, and upload it to an S3 bucket.
+    5) Create a CSV file from these pairings of instance ID and timestamp, sorted by timestamp ascending, and upload it to an S3 bucket.
 
 ### Open
 
