@@ -3,10 +3,11 @@
 # Licensed under the BSD-style license. See LICENSE file in the project root for full license information.
 
 import base64
+from datetime import timedelta
 
 import simplejson as json
 
-from pairing.utils import ExtendedEncoder
+from pairing.utils import ExtendedEncoder, get_epoch_time
 
 START_INSTANCES_EVENT = """
 {
@@ -262,6 +263,7 @@ def generate_kinesis_batch(n=100):
         event_string = START_INSTANCES_EVENT.replace('i-99999999991111111', f'i-99999999991{i}')
         event_string = event_string.replace('i-99999999992222222', f'i-99999999992{i}')
         instance_event = json.loads(event_string)
+        instance_event['eventTime'] = get_epoch_time(instance_event['eventTime']) + timedelta(seconds=i)
 
         event_string = CREATE_NAT_GATEWAY.replace('nat-00000001111111111', f'nat-00000001{i}')
         nat_gateway_event = json.loads(event_string)
